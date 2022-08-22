@@ -1,4 +1,8 @@
 .App {
-  font-family: sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
   text-align: center;
+  margin: -8px;
+  --text-gray: #374151;
+  color: var(--text-gray);
 }
