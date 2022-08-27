@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { colors } from '../utils/constants';
 
 const Nav = styled.nav`
@@ -23,6 +24,7 @@ const Logo = styled.div`
 
 const NavigationWrapper = styled.div`
     display: none;
+    
     @media only screen and (min-width: 750px) {
         font-size: 1rem;
         cursor: pointer;
@@ -31,7 +33,7 @@ const NavigationWrapper = styled.div`
     }
 `;
 
-const Link = styled.a`
+const LinkItem = styled(NavLink)`
     text-decoration: none;
     color: ${colors.textColor};
     cursor: pointer;
@@ -40,6 +42,10 @@ const Link = styled.a`
     margin-right: 1.5rem;
     display: inline-block;
     position: relative;
+    &.current-tab {
+        color: ${colors.primaryColor};
+        border-bottom: 2px solid ${colors.primaryColor};
+    }
    &:hover {
         color: ${colors.primaryColor};
         border-bottom: 2px solid ${colors.primaryColor};
@@ -106,28 +112,33 @@ display: none;
  }
 `;
 
-const MobileLink = styled(Link)`
+const MobileLink = styled(LinkItem)`
     padding: 1rem;
     &:hover {
         color: ${colors.primaryColor};
         border-bottom: 0px;
     }
+    &.current-tab-mobile {
+        color: ${colors.primaryColor};
+    }
 `;
 
-const Navbar = () => {
+const Navbar = ({currentRoute}) => {
     const [isHamburgerMenuClicked, setIsHamburgerMenuClicked] = useState(false);
     const onHamburgerMenuClick = () => {
         if(isHamburgerMenuClicked) setIsHamburgerMenuClicked(false);
         else setIsHamburgerMenuClicked(true);
     }
+    
+  
     return (
         <>
         <Nav>
             <Logo>aksharasreepharma</Logo>
             <NavigationWrapper>
-                <Link href = '/'>HOME</Link>
-                <Link href = '/'>OUR PRODUCTS</Link>
-                <Link href = '/'>CONTACT US</Link>
+                <LinkItem exact to = '/' className={currentRoute === "/" ? "current-tab":""} >HOME</LinkItem>
+                <LinkItem exact to = '/products' className={currentRoute === "/products" ? "current-tab":""} >OUR PRODUCTS</LinkItem>
+                <LinkItem exact to = '/contact' className={currentRoute === "/contact" ? "current-tab":""} >CONTACT US</LinkItem>
             </NavigationWrapper>
             <HamburgerWrapper onClick={onHamburgerMenuClick}>
                 <HamburgerLine className={isHamburgerMenuClicked ? "click1":""}></HamburgerLine>
@@ -136,9 +147,9 @@ const Navbar = () => {
             </HamburgerWrapper>
         </Nav>
         <MobileMenuWrapper className = {isHamburgerMenuClicked ? "mobile-menu-wrapper" :""}>
-            <MobileLink href = '/'>HOME</MobileLink>
-            <MobileLink href = '/'>OUR PRODUCTS</MobileLink>
-            <MobileLink href = '/'>CONTACT US</MobileLink>
+            <MobileLink to = '/' className={currentRoute === "/" ? "current-tab-mobile":""}>HOME</MobileLink>
+            <MobileLink to = '/products' className={currentRoute === "/products" ? "current-tab-mobile":""}>OUR PRODUCTS</MobileLink>
+            <MobileLink to = '/contact' className={currentRoute === "/contact" ? "current-tab-mobile":""}>CONTACT US</MobileLink>
         </MobileMenuWrapper>
         </>
     )

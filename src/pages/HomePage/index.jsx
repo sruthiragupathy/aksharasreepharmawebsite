@@ -1,10 +1,10 @@
-import Navbar from '../../Components/Navbar'
-import Content from './Content'
+import Content from './Content';
+import Navbar from '../../Components/Navbar';
 
 const HomePage = () => {
     return (
     <>
-        <Navbar/>
+        <Navbar currentRoute = "/" />
         <Content/>
     </>
     )

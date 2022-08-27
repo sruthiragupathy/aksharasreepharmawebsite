@@ -4,6 +4,7 @@ export const colors = {
     'textColor': '#374151',
     'hoverGray': '#f0fdf4',
     'boxShadowColor': '#e5e7eb',
-    'lightText': '#f9fafb'
+    'lightText': '#f9fafb',
+    'lightGray': '#6b7280'
 };
 

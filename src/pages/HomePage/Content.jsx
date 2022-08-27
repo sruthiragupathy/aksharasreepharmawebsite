@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import Illustration from './homepage-illustration.svg';
 import {colors} from '../../utils/constants';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import { Link } from "react-router-dom";
 
 
 const Wrapper = styled.div`
@@ -76,7 +77,7 @@ const ButtonWrapper = styled.div`
     margin-bottom: 5rem;
 `;
 
-const StyledButton = styled.a`
+const StyledButton = styled(Link)`
     padding: 1rem 1.5rem;
     border-width: 0;
     background: ${colors.primaryColor};
@@ -125,7 +126,7 @@ const Content = () => {
         </VisionWrapper>
     </InnerWrapper>
     <ButtonWrapper>
-        <StyledButton href="/">
+        <StyledButton to="/products">
             <Span>View our products</Span>
             <ArrowRightAltIcon fontSize="large"/>
         </StyledButton>
